@@ -9,6 +9,9 @@ class CardService {
     getCards() {
         return axios.get(CARD_API_BASE_URL);
     };
+    deleteCard(id) {
+        return axios.delete(CARD_API_BASE_URL + '/' + id);
+    };
 }
 
 export default new CardService();

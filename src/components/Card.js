@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Card = ({ card }) => {
+const Card = ({ card, deleteCard }) => {
     return (
         <tr key={card.id}>
             <td className="text-left px-6 py-4 whitespace-nowrap">
@@ -11,9 +11,11 @@ const Card = ({ card }) => {
             </td>
             <td className="text-right px-6 py-4 whitespace-nowrap font-medium text-sm">
                 <a href="" className="text-indigo-600 hover:text-indigo-800 px-4">Edit</a>
-                <a href="" className="text-indigo-600 hover:text-indigo-800 ">Delete</a>
+                <a
+                    onClick={(e, id) => deleteCard(e, card.id)}
+                    href="" className="text-indigo-600 hover:text-indigo-800 hover:cursor-pointer">Delete</a>
             </td>
-        </tr>
+        </tr >
     )
 }
 
