@@ -24,6 +24,21 @@ const CardList = () => {
     fetchData();
   }, []);
   
+  const deleteCard = (e, id)=>{
+    e.preventDefault();
+    CardService.deleteCard(id)
+    .then((response) => {
+      if(cards){
+        setCards((prevElement)=>{
+          return prevElement.filter(card => card.id !== id);
+        });
+      };
+    }).catch(err => {
+      console.log(err);
+    });
+  };
+
+
   return (
     <div className="container mx-auto my-8">
       <div className="h-12">
@@ -44,8 +59,11 @@ const CardList = () => {
           { ! loading && (
             <tbody className="bg-white">
                 {cards.map((card) => (
-                  <Card card={card} key={card.id}></Card>
-                ))}
+                  <Card 
+                  card={card} 
+                  deleteCard={deleteCard} 
+                  key={card.id}></Card>
+                ))};
               </tbody>
           )}
         </table>
