@@ -5,7 +5,7 @@ import Card from './Card';
 
 const CardList = () => {
   const navigate = useNavigate();
-  
+
   const [loading, setLoading] = useState(true);//set loading to true
   const [cards, setCards] = useState(null);//set card to null
 
@@ -23,28 +23,28 @@ const CardList = () => {
     };
     fetchData();
   }, []);
-  
-  const deleteCard = (e, id)=>{
+
+  const deleteCard = (e, id) => {
     e.preventDefault();
     CardService.deleteCard(id)
-    .then((response) => {
-      if(cards){
-        setCards((prevElement)=>{
-          return prevElement.filter(card => card.id !== id);
-        });
-      };
-    }).catch(err => {
-      console.log(err);
-    });
+      .then((response) => {
+        if (cards) {
+          setCards((prevElement) => {
+            return prevElement.filter(card => card.id !== id);
+          });
+        };
+      }).catch(err => {
+        console.log(err);
+      });
   };
 
 
   return (
     <div className="container mx-auto my-8">
       <div className="h-12">
-        <button 
-        onClick={()=>navigate('/add-card')}
-        className="rounded text-white bg-slate-500 py-2 px-6"> Add Flash Card</button>
+        <button
+          onClick={() => navigate('/add-card')}
+          className="rounded text-white bg-slate-500 py-2 px-6"> Add Flash Card</button>
       </div>
       <div className="flex shadow border-b">
         <table className="min-w-full">
@@ -56,15 +56,15 @@ const CardList = () => {
             </tr>
           </thead>
 
-          { ! loading && (
+          {!loading && (
             <tbody className="bg-white">
-                {cards.map((card) => (
-                  <Card 
-                  card={card} 
-                  deleteCard={deleteCard} 
+              {cards.map((card) => (
+                <Card
+                  card={card}
+                  deleteCard={deleteCard}
                   key={card.id}></Card>
-                ))};
-              </tbody>
+              ))}
+            </tbody>
           )}
         </table>
       </div>
