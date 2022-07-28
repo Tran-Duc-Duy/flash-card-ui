@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import CardService from '../services/CardService';
 
 const UpdateCard = () => {
-    const {id} = useParams();
+    const { id } = useParams();
     const navigate = useNavigate();
     const [card, setCard] = React.useState({
         id: id,
@@ -12,12 +12,12 @@ const UpdateCard = () => {
     });
     const updateCard = (e) => {
         e.preventDefault();
-        CardService.updateCard(card,id)
-        .then((response) => {
-            navigate('/card-list');
-        }).catch((error) => {
-            console.error(error);
-        });
+        CardService.updateCard(card, id)
+            .then((response) => {
+                navigate('/card-list');
+            }).catch((error) => {
+                console.error(error);
+            });
     };
     const handleChange = (e) => {//handling the input change
         const value = e.target.value; //get the value of the input 
